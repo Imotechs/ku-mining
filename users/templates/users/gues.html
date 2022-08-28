@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Number Guessing</title>
+    <link rel="stylesheet" href="{%static 'users/games/style.css'%}">
+</head>
+<body>
+
+    <main>
+        <h1>Predict The Number</h1>
+        <div class="info">
+            <p>Try and guess a random number between 1 and 200.</p>
+            <p>You have 10 attempts to guess the right number.</p>
+        </div>
+        </br>
+        <div id="wrapper">
+            <form class="form">
+                <label2 for="guessField" id="guess">Guess a number</label><br>
+                <div id="remove">
+                    <label class="textL">Stake Amount</label>
+                    <input type="number" id="g-field" class="g-field" placeholder="$">
+                </div>
+                <input type="text" id="guessField" class="guessField">
+                <input  type="submit" id="subt" value="Submit guess" class="guessSubmit">
+            </form>
+
+
+            <div class="resultParas">
+                <p >Previous Guesses: <span class="guesses"></span></p>
+                <p >Guesses Remaining: <span class="lastResult">10</span></p>
+                <h3></h3>
+                <p class="lowOrHi"></p>
+                
+            </div>
+        </div>
+    </main>
+    
+    <script src="{%static 'users/games/app.js'%}"></script>
+</body>
+</html>

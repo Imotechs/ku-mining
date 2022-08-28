@@ -1,0 +1,257 @@
+{%extends 'base2.html'%}
+{%load static%}
+{%block content%}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+                    <!-- ============================================================== -->
+                    <div class="page-breadcrumb">
+                        <div class="row">
+                            <div class="col-5 align-self-center">
+                                <h4 class="page-title">Dashboard</h4>
+                                <div class="d-flex align-items-center">
+
+                                </div>
+                            </div>
+                            <div class="col-7 align-self-center">
+                                <div class="d-flex no-block justify-content-end align-items-center">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{%url 'home'%}">Home</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+     <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Info box -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-md-12">
+                        <div class="row">
+                            <!-- Column -->
+                            <div class="col-md-12">
+                                <div class="card bg-light-success no-card-border">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Main Balance</h5>
+                                        <div class="d-flex no-block">
+                                            <div class="align-self-end no-shrink">
+                                                <h2 class="m-b-0">${{request.user.account.main|floatformat:2}}</h2>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <div id="prediction"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                        </div>
+                    </div>
+                    {%if request.user.account.balance > 1%}
+                    <div class="col-lg-4 col-md-12">
+                        <div class="row">
+                            <!-- Column -->
+                            <div class="col-md-12">
+                                <div class="card bg-success no-card-border">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Profit Balance</h5>
+                                        <div class="d-flex no-block">
+                                            <div class="align-self-end no-shrink">
+                                                <h2 class="m-b-0">$ {{request.user.account.balance|floatformat:2}}</h2>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <div id="prediction"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+
+                <div class="card-group">
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="m-r-10">
+                                    <span class="btn btn-circle btn-lg btn-info">
+                                        <i class="mdi mdi-currency-usd text-white"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    Bitcoin
+
+                                </div>
+                                <div class="ml-auto">
+                                    <h3><span id="bitcoin"></span></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="m-r-10">
+                                    <span class="btn btn-circle btn-lg bg-success">
+                                        <i class="mdi mdi-currency-usd text-white"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    Litecoin
+
+                                </div>
+                                <div class="ml-auto">
+                                    <h3><span id="litecoin"></span></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="m-r-10">
+                                    <span class="btn btn-circle btn-lg bg-success">
+                                        <i class="mdi mdi-currency-usd text-white"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    Dogecoin
+
+                                </div>
+                                <div class="ml-auto">
+                                    <h3><span id="dogecoin"></span></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="m-r-10">
+                                    <span class="btn btn-circle btn-lg bg-warning">
+                                        <i class="mdi mdi-currency-usd text-white"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    Ethereum
+
+                                </div>
+                                <div class="ml-auto">
+                                    <h3><span id="ethereum"></span></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <!-- Column -->
+                    <script>
+                        var btc = document.getElementById("bitcoin")
+                        var ltc = document.getElementById("litecoin")
+                        var eth = document.getElementById("ethereum")
+                        var doge = document.getElementById("dogecoin")
+
+                        var liveprice = {
+                            "async": true,
+                            "scroosDomain": true,
+                            "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Clitecoin%2Cethereum%2Cdogecoin&vs_currencies=usd",
+                            
+                            "method": "GET",
+                            "headers": {} 
+                        }
+
+                        $.ajax(liveprice).done(function (response){
+                            btc.innerHTML = response.bitcoin.usd;
+                            ltc.innerHTML = response.litecoin.usd;
+                            eth.innerHTML = response.ethereum.usd;
+                            doge.innerHTML = response.dogecoin.usd;
+                        });
+                    </script>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="table v-middle">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <th class="border-top-0">Trade</th>
+                                            <th class="border-top-0">Date Entered</th>
+                                            <th class="border-top-0">Date Due</th>
+                                            <th class="border-top-0">Amount</th>
+                                            <th class="border-top-0">profit</th>
+                                            <th class="border-top-0">Return</th>
+                                            <th class="border-top-0">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for trade in trades%}
+                                        <tr>
+
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    {%if trade.profited%}
+                                                    <div class="m-r-10">
+                                                        <a class="btn btn-circle btn-success text-white">ret</a>
+                                                    </div>
+                                                    {%else%}
+                                                    <div class="m-r-10">
+                                                        <a class="btn btn-circle btn-danger text-white">min</a>
+                                                    </div>
+                                                    {%endif%}
+
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">{{trade.count}}</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{trade.due_time}}</td>
+                                            <td>{{trade.time_now}}</td>
+                                            <td>
+                                                <h5 class="m-b-0">${{trade.amount}}</h5>
+                                            </td>
+                                            <td>
+                                                <h5 class="m-b-0">${{trade.profit|floatformat:2}}</h5>
+                                            </td>
+                                            <td>
+                                                <h6 class="m-b-0">{{trade.get_percent|floatformat:2}}%</h6>
+                                            </td>
+                                            <td>
+                                                {%if trade.profited%}
+                                                <label class="label label-success">Approved</label>
+                                                {%else%}
+                                                <label class="label label-warning">Locked</label>
+                                                {%endif%}
+                                            </td>
+                                        </tr>
+                                        {%endfor%}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+</div>
+{%endblock content%}

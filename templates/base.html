@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>KU - Mining</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{%static 'mainapp/img/core-img/'%}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{%static 'mainapp/style.css'%}">
+
+    <!-- Vendors-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- ##### Preloader ##### -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="top-header-content h-100 d-flex align-items-center justify-content-between">
+                            <!-- Top Headline -->
+                            <div class="top-headline">
+                                <p>Welcome to <span>KU - Mining</span></p>
+                            </div>
+                            <!-- Top Login & Faq & Earn Monery btn -->
+                            <div class="login-faq-earn-money">
+                                <a href="{%url 'register'%}">Login | Register</a>
+                                <a href="{%url 'login'%}" class="active">Earn Money</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="cryptos-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="cryptosNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="{%url 'home'%}"><img src="{%static 'mainapp/img/core-img/'%}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{%url 'home'%}">Home</a></li>
+                                    <li><a href="{%url 'about'%}">About us</a></li>
+                                    <li><a href="{%url 'news'%}">News</a></li>
+                                    <li><a href="{%url 'contact'%}">Contact</a></li>
+                                    {%if request.user.is_authenticated%}
+                                    <li><a href="{%url 'profile'%}" style="color:orange">Dashboard</a></li>
+                                    {%endif%}
+                                </ul>
+
+                                <!-- Search Form -->
+                                <div class="header-newsletter-form">
+                                    <form action="#" method="post">
+                                        <input type="text" name="text" id="email" placeholder="Search">
+                                        <button type="submit">Search</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+   {%block content%}
+
+   {%endblock content%}
+    <!-- ##### Customer Review Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area section-padding-100-0 bg-img bg-overlay" style="background-image: url(img/bg-img/bg-1.jpg);">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <a href="#"><img src="{%static 'mainapp/img/core-img/'%}" alt=""></a>
+                            </div>
+                            <p>As we all know kucoin exchange is one of the world leading cryptocurrency exchange which has been in existence for years and consistently delivering quality cryptocurrency trading experiences and services to its robust customers, partners, members and investors.</p>
+                            <div class="footer-social-info">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedIn"></i></a>
+                                <a href="#"><i class="fa fa-whatsapp"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <h6>Recent Posts</h6>
+                            </div>
+                            <!-- Single Blog Post -->
+                            <div class="single--blog-post">
+                                <a href="https://finance.yahoo.com/news/bitcoin-mining-difficulty-rises-0-030610925.html">
+                                    <p>Bitcoin mining difficulty rises 0.63% in latest adjustment</p>
+                                </a>
+                                <span>March 10, 2022</span>
+                            </div>
+                            <!-- Single Blog Post -->
+                            <div class="single--blog-post">
+                                <a href="https://finance.yahoo.com/news/mining-rig-maker-canaan-shares-042554758.html">
+                                    <p>Mining rig maker Canaan shares nudge up, profit expanded in Q2</p>
+                                </a>
+                                <span>March 10, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <h6>Quick Links</h6>
+                            </div>
+                            <nav>
+                                <ul class="useful-links d-flex justify-content-between flex-wrap">
+                                    <li><a href="{%url 'home'%}">Home</a></li>
+                                    <li><a href="{%url 'about'%}">About us</a></li>
+                                    <li><a href="{%url 'news'%}">News</a></li>
+                                    <li><a href="{%url 'contact'%}">Contact</a></li>
+                                    <li><a href="{%url 'profile'%}">Dashboard</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-12">
+                        <p> Copyright &copy;<script>document.write(new Date().getFullYear());</script> Ku - Mining | All rights reserved </a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{%static 'mainapp/js/jquery/jquery-2.2.4.min.js'%}"></script>
+    <!-- Popper js -->
+    <script src="{%static 'mainapp/js/bootstrap/popper.min.js'%}"></script>
+    <!-- Bootstrap js -->
+    <script src="{%static 'mainapp/js/bootstrap/bootstrap.min.js'%}"></script>
+    <!-- All Plugins js -->
+    <script src="{%static 'mainapp/js/plugins/plugins.js'%}"></script>
+    <!-- Active js -->
+    <script src="{%static 'mainapp/js/active.js'%}"></script>
+</body>
+
+</html>

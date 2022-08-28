@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" >
+{%load static%}
+<head>
+  <meta charset="UTF-8">
+  <title>Login & Singup</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="./style.css">
+<link href="{%static 'mainapp/Register/style.css'%}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h1>KU - Mining</h1>
+		<p>In kucoin we carry out mining opearations with 
+			sophisticated software and hardware technologies
+			 that guarantee daily profit returns from your investment.</p>
+		<span>
+			<p>Join us today</p>
+			<a href="{%url 'home'%}">Exchange</a>
+			<a href="{%url 'login'%}"> Join the leading Market</a>
+		</span>
+		<!-- <p style="color: red;">{{msg}}</p> -->
+
+		{%for error,message in msg.items%}
+		<p style="color: red;">{{error}} &nbsp;{{message}}</p>
+		{%endfor%}
+		</div>
+	</div>
+	{%for msg in messages%}
+	<script>
+		alert('{{msg}}')
+	</script>
+	{%endfor%}
+	
+		<div class="right">
+		<h5>SignUp</h5>
+		<p>Already have an account? <a href="{%url 'login'%}">Login</a> it takes less than a minute</p>
+		<form method="post">
+		<div class="inputs">
+			<input type="text" name="username" placeholder="Username">
+			<input type="email" name="email" placeholder="Email">
+			<br>
+			{%if ref is not None%}
+			<input type="number" name="ref" placeholder="Ref[optional]" value="{{ref}}">
+			{%else%}
+			<input type="number" name="ref" placeholder="Ref[optional]" >
+			{%endif%}
+			{%csrf_token%}
+			<input type="password" name="password1" placeholder="Password">
+			<input type="password" name="password2" placeholder="Confirm password">
+		</div>
+			
+			<br><br>
+			
+		<div class="remember-me--forget-password">
+
+	<label>
+		<input type="checkbox" name="item" checked/>
+		<span class="text-checkbox">Remember me</span>
+	</label>
+			<p>Forget Password? <a href="#">Reset</a></p>
+		</div>
+			
+			<br>
+			<button type = "submit">Submit</button>
+	</div>
+</form>
+</div>
+<!-- partial -->
+  
+</body>
+</html>

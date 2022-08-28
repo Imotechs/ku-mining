@@ -1,0 +1,53 @@
+{%extends 'base2.html'%}
+{%load static%}
+{%block content%}  
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Welcome back  -->
+        <!-- ============================================================== -->
+        
+        
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Upload</h4>
+                        <h6 class="card-subtitle">Select your evidence of deposit by clicking the <code>.Choose file</code> button below.</h6>
+                        <form  class="dropzone" method="post" enctype="multipart/form-data">
+                            <div class="fallback">
+                                <input name="file" type="file"  />
+                                {%csrf_token%}
+                            </div>
+                        <a href="#"><button onclick="uploadToDatabse" class="btn bg-primary" style="color: #fff; margin: 5px;" type="submit" id="depsoit-btn" >Submit</button></a>
+                        <p id="uploaded" class="alert alert-warning" style="display: none;"> Upload successful </p>
+                    </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+
+        <style>
+            .dropzone {
+                min-height: 150px;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+                padding: 20px 20px;
+                text-align: left;
+                box-sizing: border-box;
+            }
+        </style>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>
+    {%endblock content%}  

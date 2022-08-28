@@ -1,0 +1,124 @@
+{%extends 'base2.html'%}
+{%load static%}
+{%block content%}   
+     <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-5 align-self-center">
+                        <h4 class="page-title">Profile </h4>
+                        <div class="d-flex align-items-center">
+
+                        </div>
+                    </div>
+                    <div class="col-7 align-self-center">
+                        <div class="d-flex no-block justify-content-end align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+
+                <div class="container rounded bg-white mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-5 border-right">
+                            <div class="p-3 py-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Profile Settings</h4>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6"><label class="labels">UserName</label><input type="text" class="form-control" placeholder="{{request.user.username}}" value="{{request.user.username}}" readonly></div>
+                                    <div class="col-md-6"><label class="labels">Email</label><input type="text" class="form-control" value="" placeholder="{{request.user.email}}" readonly></div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12"><label class="labels">Ref Code</label><input type="text" class="form-control" placeholder="{{request.user.profile.uid}}" value="" readonly></div>
+                                    <!-- <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="Enter Email" value="" readonly></div> -->
+                                </div>
+                                <div class="row mt-3">
+                                    <!-- <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="Country" value="" readonly></div> -->
+                                    <p class="btn btn-primary profile-button"> &nbsp;copy your ref link
+
+                        
+                        <p id="p1" style="margin-top:0px; margin-bottom:0px;" hidden> </p>
+                        <i 
+                            style="margin-left: 5px; 
+                            cursor: pointer; 
+                            padding-top: 7px;
+                            font-weight: 700;" 
+                            class="fa fa-copy" onclick="copyToClipboard('#p1')">
+                        </i> </p>
+                        <b id="copied" style="display: none; margin-left: 5px;">Copied!</b>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Profile</button></div>
+                </div>
+                    </div>
+
+                    <script>
+                        var ref = document.domain +'/users/accounts/sign_up/'+'{{request.user.profile.uid}}/'
+                        var refbtn = document.getElementById('p1')
+                        refbtn.innerText =ref
+
+                        function copyToClipboard(element) {
+                        var $temp = $("<input>");
+                        $("body").append($temp);
+                        $temp.val($(element).text()).select();
+                        document.execCommand("copy");
+                        $temp.remove();
+
+                        var copy = document.getElementById('copied')
+                        copy.style.display = "block";
+                        }
+                    </script>
+                        <!-- <div class="col-md-4">
+                            <div class="p-3 py-5">
+                                <div class="d-flex justify-content-between align-items-center transactions"><span>Edit Profile Details</span></div><br>
+                                <div class="row mt-2">
+                                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="First name" value=""></div>
+                                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="Surname"></div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter Phone Number" value=""></div>
+                                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="Enter Email" value=""></div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="Country" value=""></div>
+                                </div>
+                                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                            </div>
+
+                        </div>
+                    </div>     -->
+                </div>
+                
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+
+    {%endblock content%}   
